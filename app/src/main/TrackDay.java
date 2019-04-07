@@ -8,6 +8,7 @@ public class TrackDay
     private ArrayList<TrackHour> hours;
     private String data;
     private int numMinutes;
+    private int day;
 
     /**
      * constructor for TrackDay, reads data from file and builds day
@@ -18,7 +19,10 @@ public class TrackDay
         this.hours = new ArrayList<TrackHour>();
         this.fillHours(); //fill hours array based on data from the file
 
-        System.out.println(numMinutes);
+        //set day
+        int startIndex = this.data.indexOf('\n') + 1;
+        int endIndex = this.data.indexOf(',', startIndex);
+        this.day = Integer.parseInt(this.data.substring(startIndex,endIndex));
     }
 
     /**
@@ -45,6 +49,9 @@ public class TrackDay
         this.data = mySB.toString(); //set data
     }
 
+    /**
+     * use the data from the file to build the array of hours
+     */
     private void fillHours()
     {
         int startLine; //index in the string the line starts on
@@ -113,9 +120,6 @@ public class TrackDay
             //end loop if all lines have been read
             if(currLineNum + 1 > this.numMinutes || end == true)
             {
-                System.out.println("currLineNum = " + currLineNum);
-                System.out.println("numMinutes = " + this.numMinutes);
-                System.out.println("end = " + end);
                 break;
             }
         }
@@ -142,6 +146,108 @@ public class TrackDay
         }
     }
 
+    /**
+     * get the heart rate at a certain time based on the parameters
+     * @param hour The hour of the day
+     * @param minute The minute of the hour
+     * @return The heart rate at that time, -1 if no data exists for that time
+     */
+    public int getHeartRateAt(int hour, int minute)
+    {
+        TrackMinute dataAtTime = this.hasData(hour, minute);
+
+        //data for specified time does not exist, return -1
+        if(dataAtTime == null)
+        {
+            return -1;
+        }
+
+        //return the heart rate at that time
+        else
+        {
+            return dataAtTime.getHeartRate();
+        }
+    }
+
+    /**
+     * get the movement at a certain time based on the parameters
+     * @param hour The hour of the day
+     * @param minute The minute of the hour
+     * @return The movement at that time, -1 if no data exists for that time
+     */
+    public int getMovementAt(int hour, int minute)
+    {
+        TrackMinute dataAtTime = this.hasData(hour, minute);
+
+        //data for specified time does not exist, return -1
+        if(dataAtTime == null)
+        {
+            return -1;
+        }
+
+        //return the heart rate at that time
+        else
+        {
+            return dataAtTime.getMovement();
+        }
+    }
+
+    /**
+     * check if data exists for the specified time
+     * @param hour The hour of the day
+     * @param minute The minute of the hour
+     * @return The instance of TrackMinute for that time, null if no data
+     */
+    public TrackMinute hasData(int hour, int minute)
+    {
+        TrackHour foundHour = null;
+
+        //loop through each hour in the array to find the correct hour
+        for(int i = 0; i < this.hours.size(); i++)
+        {
+            int currHour = this.hours.get(i).getHour();
+
+            //hour found, save instance of TrackHour for later
+            if(currHour == hour)
+            {
+                foundHour = this.hours.get(i);
+                break;
+            }
+        }
+
+        //hour not found in array
+        if(foundHour == null)
+        {
+            return null;
+        }
+
+        //get the list of minutes in this hour
+        ArrayList<TrackMinute> minutes = foundHour.getMinutes();
+
+        TrackMinute foundMinute = null;
+
+        //loop through minutes in list until matching minute is found
+        for(int i = 0; i < minutes.size(); i++)
+        {
+            int currMinute = minutes.get(i).getMinute();
+
+            //minute found, save instance of TrackMinute for later
+            if(currMinute == minute)
+            {
+                foundMinute = minutes.get(i);
+                break;
+            }
+        }
+
+        //minute not found in array
+        if(foundMinute == null)
+        {
+            return null;
+        }
+
+        return foundMinute; //TrackMinute at the specified time
+    }
+
     public void printDay()
     {
         for(int i = 0; i < this.hours.size(); i++)
@@ -156,7 +262,8 @@ public class TrackDay
         try{
         TrackDay test = new TrackDay("tester.txt");
 
-        test.printDay();
+        //test.printDay();
+        System.out.println(test.getHeartRateAt(19,39));
        }
        catch(IOException e)
        {System.out.println("didn't work :(");}
