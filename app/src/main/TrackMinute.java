@@ -71,6 +71,30 @@ public class TrackMinute
                                                         data.length()));
     }
 
+    /**
+     * getter for 'minute' instance variable
+     */
+    public int getMinute()
+    {
+        return this.minute;
+    }
+
+    /**
+     * getter for 'heartRate' instance variable
+     */
+    public int getHeartRate()
+    {
+        return this.heartRate;
+    }
+
+    /**
+     * getter for 'movement' instance variable
+     */
+    public int getMovement()
+    {
+        return this.movement;
+    }
+
     public void printMinute()
     {
         System.out.print("day: " + this.day);

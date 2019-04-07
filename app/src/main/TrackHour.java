@@ -40,6 +40,22 @@ public class TrackHour
         }
     }
 
+    /**
+     * getter for 'hour' instance variable
+     */
+    public int getHour()
+    {
+        return this.hour;
+    }
+
+    /**
+     * getter for 'minutes' instance variable
+     */
+    public ArrayList<TrackMinute> getMinutes()
+    {
+        return this.minutes;
+    }
+
     public void printHour()
     {
         System.out.println("**********");
