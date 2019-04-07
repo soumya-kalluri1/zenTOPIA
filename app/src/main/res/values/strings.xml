@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">zenTOPIA</string>
+    <string name="title_meditation">Meditation</string>
+    <string name="title_sleep">Sleep</string>
+    <string name="title_calendar">Calendar</string>
+
+    <string-array name="meditation_entries">
+        <item>Sleep</item>
+        <item>Stress</item>
+        <item>Relax</item>
+        <item>Confidence</item>
+        <item>Happiness</item>
+        <item>Love</item>
+        <item>Motivation</item>
+        <item>Chakras</item>
+        <item>Focus</item>
+        <item>Mindfulness</item>
+    </string-array>
+</resources>
