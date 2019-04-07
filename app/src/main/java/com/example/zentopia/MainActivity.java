@@ -25,6 +25,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    //variables for adapters (hyperlinks in list)
     private TextView mTextMessage;
     private ArrayList<String> arrayList;
     private ArrayAdapter<String> arrayAdapter;
@@ -32,11 +33,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ArrayAdapter<String> dataAdapter;
     private ArrayList<String> stressList;
     private ArrayAdapter<String> stressAdapter;
+    private ArrayList<String> happinessList;
+    private ArrayAdapter<String> happinessAdapter;
+    private ArrayList<String> confidenceList;
+    private ArrayAdapter<String> confidenceAdapter;
+    private ArrayList<String> loveList;
+    private ArrayAdapter<String> loveAdapter;
+    private ArrayList<String> relaxList;
+    private ArrayAdapter<String> relaxAdapter;
     private CalendarView mCalendar;
 
     //meditation variables
     private Spinner mSpinner;
 
+    //lists for different meditation categories
     private ListView mSleepList;
     private ListView mStressList;
     private ListView mConfidenceList;
@@ -219,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mStressList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Uri uri = Uri.parse("https://www.youtube.com/watch?v=F28MGLlpP90");
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=mFlrc16xjik");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
@@ -227,15 +237,63 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //confidenceList adapter
         mConfidenceList.setVisibility(View.GONE);
+        String[] confidenceItems = getResources().getStringArray(R.array.confidence_items);
+        confidenceList=new ArrayList<>(Arrays.asList(confidenceItems));
+        confidenceAdapter=new ArrayAdapter<String>(this, R.layout.list_item, R.id.txtitem, confidenceList);
+        mConfidenceList.setAdapter(confidenceAdapter);
+        mConfidenceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=5Za1RZWmnYA");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
         //happinessList adapter
         mHappinessList.setVisibility(View.GONE);
+        String[] happinessItems = getResources().getStringArray(R.array.happiness_items);
+        happinessList=new ArrayList<>(Arrays.asList(happinessItems));
+        happinessAdapter=new ArrayAdapter<String>(this, R.layout.list_item, R.id.txtitem, happinessList);
+        mHappinessList.setAdapter(happinessAdapter);
+        mHappinessList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=Jyy0ra2WcQQ");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
         //loveList adapter
-        mLoveList.setVisibility(View.GONE);
+        mRelaxList.setVisibility(View.GONE);
+        String[] relaxItems = getResources().getStringArray(R.array.relax_items);
+        relaxList=new ArrayList<>(Arrays.asList(relaxItems));
+        relaxAdapter=new ArrayAdapter<String>(this, R.layout.list_item, R.id.txtitem, relaxList);
+        mRelaxList.setAdapter(relaxAdapter);
+        mRelaxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=CdbzDMSGsyg");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
         //relaxList adapter
-        mRelaxList.setVisibility(View.GONE);
+        mLoveList.setVisibility(View.GONE);
+        String[] loveItems = getResources().getStringArray(R.array.love_items);
+        loveList=new ArrayList<>(Arrays.asList(loveItems));
+        loveAdapter=new ArrayAdapter<String>(this, R.layout.list_item, R.id.txtitem, loveList);
+        mLoveList.setAdapter(loveAdapter);
+        mLoveList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=xB4WOgoRO54");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
         //sleep schedule variables
         mSleepSchedule = (ImageView) findViewById(R.id.sleepScheduleView);

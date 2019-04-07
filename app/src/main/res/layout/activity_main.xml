@@ -49,6 +49,7 @@
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
         android:scrollbars="vertical"
+        android:background="#F0FFF0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/meditation_spinner" />
