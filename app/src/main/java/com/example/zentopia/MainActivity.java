@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ListView;
@@ -22,11 +23,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextView mTextMessage;
     private ArrayList<String> arrayList;
     private ArrayAdapter<String> arrayAdapter;
+    private ArrayList<String> dataList;
+    private ArrayAdapter<String> dataAdapter;
+    private ArrayList<String> stressList;
+    private ArrayAdapter<String> stressAdapter;
     private CalendarView mCalendar;
 
     //meditation variables
@@ -38,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView mRelaxList;
     private ListView mLoveList;
     private ListView mHappinessList;
+
+    private ImageView mSleepSchedule;
 
     private BottomNavigationView mBottomNav;
 
@@ -53,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     mCalendar.setVisibility(View.GONE);
 
                     mSpinner.setVisibility(View.VISIBLE);
+                    mSleepSchedule.setVisibility(View.GONE);
 
                     mSleepList.setVisibility(View.VISIBLE);
                     mStressList.setVisibility(View.GONE);
@@ -60,66 +68,6 @@ public class MainActivity extends AppCompatActivity {
                     mHappinessList.setVisibility(View.GONE);
                     mLoveList.setVisibility(View.GONE);
                     mRelaxList.setVisibility(View.GONE);
-
-                    class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-                        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                            switch ( pos ) {   //parent.getItemAtPosition(pos).toString()) {
-                                case 0:
-
-                                    mSleepList.setVisibility(View.VISIBLE);
-                                    mStressList.setVisibility(View.GONE);
-                                    mConfidenceList.setVisibility(View.GONE);
-                                    mHappinessList.setVisibility(View.GONE);
-                                    mLoveList.setVisibility(View.GONE);
-                                    mRelaxList.setVisibility(View.GONE);
-
-                                case 1:
-                                    mSleepList.setVisibility(View.GONE);
-                                    mStressList.setVisibility(View.VISIBLE);
-                                    mConfidenceList.setVisibility(View.GONE);
-                                    mHappinessList.setVisibility(View.GONE);
-                                    mLoveList.setVisibility(View.GONE);
-                                    mRelaxList.setVisibility(View.GONE);
-
-                                case 2:
-                                    mSleepList.setVisibility(View.GONE);
-                                    mStressList.setVisibility(View.GONE);
-                                    mConfidenceList.setVisibility(View.GONE);
-                                    mHappinessList.setVisibility(View.GONE);
-                                    mLoveList.setVisibility(View.GONE);
-                                    mRelaxList.setVisibility(View.VISIBLE);
-
-                                case 3:
-                                    mSleepList.setVisibility(View.GONE);
-                                    mStressList.setVisibility(View.GONE);
-                                    mConfidenceList.setVisibility(View.VISIBLE);
-                                    mHappinessList.setVisibility(View.GONE);
-                                    mLoveList.setVisibility(View.GONE);
-                                    mRelaxList.setVisibility(View.GONE);
-
-                                case 4:
-                                    mSleepList.setVisibility(View.GONE);
-                                    mStressList.setVisibility(View.GONE);
-                                    mConfidenceList.setVisibility(View.GONE);
-                                    mHappinessList.setVisibility(View.VISIBLE);
-                                    mLoveList.setVisibility(View.GONE);
-                                    mRelaxList.setVisibility(View.GONE);
-
-                                case 5:
-                                    mSleepList.setVisibility(View.GONE);
-                                    mStressList.setVisibility(View.GONE);
-                                    mConfidenceList.setVisibility(View.GONE);
-                                    mHappinessList.setVisibility(View.GONE);
-                                    mLoveList.setVisibility(View.VISIBLE);
-                                    mRelaxList.setVisibility(View.GONE);
-
-                            }
-                        }
-
-                        public void onNothingSelected(AdapterView<?> parent) {
-                            //do nothing
-                        }
-                    }
 
                     return true;
 
@@ -129,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     mSpinner.setVisibility(View.GONE);
                     mSleepList.setVisibility(View.GONE);
 
+                    mSleepSchedule.setVisibility(View.VISIBLE);
                     mCalendar.setVisibility(View.GONE);
                     return true;
 
@@ -137,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
                     mSpinner.setVisibility(View.GONE);
                     mSleepList.setVisibility(View.GONE);
+                    mSleepSchedule.setVisibility(View.GONE);
 
                     mCalendar.setVisibility(View.VISIBLE);
 
@@ -155,6 +105,79 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String item = parent.getItemAtPosition(position).toString();
+
+        switch ( item ) {   //parent.getItemAtPosition(pos).toString()) {
+            case "Sleep":
+
+                mTextMessage.setText(R.string.title_meditation);
+                mCalendar.setVisibility(View.GONE);
+
+                mSpinner.setVisibility(View.VISIBLE);
+                mSleepSchedule.setVisibility(View.GONE);
+
+                mSleepList.setVisibility(View.VISIBLE);
+                mStressList.setVisibility(View.GONE);
+                mConfidenceList.setVisibility(View.GONE);
+                mHappinessList.setVisibility(View.GONE);
+                mLoveList.setVisibility(View.GONE);
+                mRelaxList.setVisibility(View.GONE);
+                break;
+
+            case "Stress":
+                mSleepList.setVisibility(View.GONE);
+                mStressList.setVisibility(View.VISIBLE);
+                mConfidenceList.setVisibility(View.GONE);
+                mHappinessList.setVisibility(View.GONE);
+                mLoveList.setVisibility(View.GONE);
+                mRelaxList.setVisibility(View.GONE);
+                break;
+
+            case "Relax":
+                mSleepList.setVisibility(View.GONE);
+                mStressList.setVisibility(View.GONE);
+                mConfidenceList.setVisibility(View.GONE);
+                mHappinessList.setVisibility(View.GONE);
+                mLoveList.setVisibility(View.GONE);
+                mRelaxList.setVisibility(View.VISIBLE);
+                break;
+
+            case "Confidence":
+                mSleepList.setVisibility(View.GONE);
+                mStressList.setVisibility(View.GONE);
+                mConfidenceList.setVisibility(View.VISIBLE);
+                mHappinessList.setVisibility(View.GONE);
+                mLoveList.setVisibility(View.GONE);
+                mRelaxList.setVisibility(View.GONE);
+                break;
+
+            case "Happiness":
+                mSleepList.setVisibility(View.GONE);
+                mStressList.setVisibility(View.GONE);
+                mConfidenceList.setVisibility(View.GONE);
+                mHappinessList.setVisibility(View.VISIBLE);
+                mLoveList.setVisibility(View.GONE);
+                mRelaxList.setVisibility(View.GONE);
+                break;
+
+            case "Love":
+                mSleepList.setVisibility(View.GONE);
+                mStressList.setVisibility(View.GONE);
+                mConfidenceList.setVisibility(View.GONE);
+                mHappinessList.setVisibility(View.GONE);
+                mLoveList.setVisibility(View.VISIBLE);
+                mRelaxList.setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -164,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
 
+        //list items, used to link to meditation video
         mSleepList = (ListView) findViewById(R.id.sleep_list);
         mStressList = (ListView) findViewById(R.id.stress_list);
         mConfidenceList = (ListView) findViewById(R.id.confidence_list);
@@ -171,8 +195,8 @@ public class MainActivity extends AppCompatActivity {
         mLoveList = (ListView) findViewById(R.id.love_list);
         mHappinessList = (ListView) findViewById(R.id.happiness_list);
 
+        //sleepList adapter
         mSleepList.setVisibility(View.VISIBLE);
-
         String[] items = getResources().getStringArray(R.array.sleep_items);
         arrayList=new ArrayList<>(Arrays.asList(items));
         arrayAdapter=new ArrayAdapter<String>(this, R.layout.list_item, R.id.txtitem, arrayList);
@@ -186,27 +210,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //stressList adapter
         mStressList.setVisibility(View.GONE);
-        mConfidenceList.setVisibility(View.GONE);
-        mHappinessList.setVisibility(View.GONE);
-        mLoveList.setVisibility(View.GONE);
-        mRelaxList.setVisibility(View.GONE);
-
-        mSpinner = (Spinner) findViewById(R.id.meditation_spinner);
- /*       mSpinner.setOnItemSelectedListener(this);
-
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.activity_main, R.id.sleep_list);
-        adapter.setDropDownViewResource(android.R.layout.activity_list_item);
-
-        mSpinner.setAdapter(adapter); */
-    /*    mSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        String[] stressItems = getResources().getStringArray(R.array.stress_items);
+        stressList=new ArrayList<>(Arrays.asList(stressItems));
+        stressAdapter=new ArrayAdapter<String>(this, R.layout.list_item, R.id.txtitem, stressList);
+        mStressList.setAdapter(stressAdapter);
+        mStressList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                Uri uri = Uri.parse("https://www.youtube.com/watch?v=F28MGLlpP90");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
-        }); */
+        });
+
+        //confidenceList adapter
+        mConfidenceList.setVisibility(View.GONE);
+
+        //happinessList adapter
+        mHappinessList.setVisibility(View.GONE);
+
+        //loveList adapter
+        mLoveList.setVisibility(View.GONE);
+
+        //relaxList adapter
+        mRelaxList.setVisibility(View.GONE);
+
+        //sleep schedule variables
+        mSleepSchedule = (ImageView) findViewById(R.id.sleepScheduleView);
+        mSleepSchedule.setVisibility(View.GONE);
+
+
+        //spinner stuff
+        mSpinner = (Spinner) findViewById(R.id.meditation_spinner);
+        mSpinner.setOnItemSelectedListener(this);
+
+        String[] categories = getResources().getStringArray(R.array.meditation_entries);
+        dataList=new ArrayList<>(Arrays.asList(categories));
+        dataAdapter=new ArrayAdapter<String>(this, R.layout.list_item, R.id.txtitem, dataList);
+        mSpinner.setAdapter(dataAdapter);
+        //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //bottom navigation
         mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
-        //BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         mBottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
