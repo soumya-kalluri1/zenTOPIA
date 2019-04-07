@@ -1,0 +1,54 @@
+// author: Rachel Lim
+// date : April 7, 2019
+// filename: README
+
+Instructions on how to get different data at different times of the day.
+
+Files needed: TrackDay.java, TrackHour.java, TrackMinute.java
+
+You should have a text file that contains data in this format:
+    yearmonthday,hour:minute,heart rate,movement
+
+    example:
+    20190406,19:18,65,10
+
+The data is in CSV format, so the first line should indicate which column
+comtains which data, so the first line of every data file that we have should
+look exactly like this:
+    day,time,heart rate,movement
+
+An example of the contents of a whole file of data:
+    day,time,heart rate,movement
+    20190406,19:18,65,10
+    20190406,19:19,65,9
+    20190406,19:20,64,9
+    20190406,19:21,64,9
+    20190406,19:22,65,9
+
+Each file represents one day of data, so the first column of data should be
+exactly the same, since that represents the day and the day should be the
+same for all of them.
+
+
+To use this data, go into your Java file and create a TrackDay object.
+The constructor takes one argument, a string, which is the name of the file
+containing the data you want to read.
+    example:
+    TrackDay april7 = new TrackDay("myFile.txt");
+Also note that we're using a Scanner to read from the file, so you will have
+to handle the possible IOException that may be thrown if that file can't be
+found.
+
+From there, you can get the heart rate and the movement at a specific time
+from that day, if there is data for that time.
+The methods to do this are 'getHeartRateAt()' and 'getMovementAt()'. Both take
+2 integers as parameters the first being the hour and the second being the
+minute. These are the method signatures:
+        public int getHeartRateAt(int hour, int minute)
+        public int getMovementAt(int hour, int minute)
+These are both non-static methods in the TrackDay class, so you would call them
+on the TrackDay object that represents the day you want and specify the time
+with the hour and minute parameters.
+
+The methods will return the heart rate or the movement at that time
+(respectively). If no data exists for that time, the method will return -1.
