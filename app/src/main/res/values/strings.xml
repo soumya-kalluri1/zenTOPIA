@@ -16,4 +16,53 @@
         <item>Focus</item>
         <item>Mindfulness</item>
     </string-array>
+
+    <string-array name="sleep_items">
+        <item>Breathing into Sleep</item>
+        <item>Deep Sleep Guided Meditation</item>
+        <item>Floating</item>
+        <item>Peaceful Sleep Meditation</item>
+        <item>Relax and Sleep Well</item>
+    </string-array>
+
+    <string-array name="stress_items">
+        <item>Piano Meditation</item>
+        <item>Relieve Stress</item>
+        <item>Calm Down</item>
+        <item>Mountain Meditation</item>
+        <item>Two Hours of Tranquility</item>
+    </string-array>
+
+    <string-array name="relax_items">
+        <item>The Healing Pool</item>
+        <item>One-Minute Meditation</item>
+        <item>Pure Relaxation</item>
+        <item>Earth Town</item>
+        <item>Calm</item>
+    </string-array>
+
+    <string-array name="confidence_items">
+        <item>Morning Meditation</item>
+        <item>Quick Confidence</item>
+        <item>Inner Strength</item>
+        <item>Personal Shielding Meditation</item>
+        <item>Self Love Meditation</item>
+    </string-array>
+
+    <string-array name="love_items">
+        <item>Being Love</item>
+        <item>Self-Love</item>
+        <item>Inner Child Healing</item>
+        <item>Be Your Own Best Friend</item>
+        <item>Open Your Heart To Love</item>
+    </string-array>
+
+    <string-array name="happiness_items">
+        <item>Developing kindness</item>
+        <item>Life is Kind</item>
+        <item>Get Your Glow On</item>
+        <item>Emotional Freedom</item>
+        <item>Coming Home</item>
+    </string-array>
+
 </resources>
